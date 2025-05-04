@@ -3,6 +3,7 @@ import { Transform } from 'node:stream';
 import { failedText, invalidInputText, sayCurrentDir } from './actions/textCommands.js';
 import byeAndExit from './actions/byeAndExit.js';
 import { up, cd, ls } from './actions/navigation.js';
+import { cat, add, mkdir, rn, cp, mv, rm } from './actions/files.js';
 
 const onCommand = async (command) => {
     switch (command[0]) {
@@ -22,6 +23,34 @@ const onCommand = async (command) => {
             await ls();
             break;
 
+        case 'cat':
+            await cat(command[1]);
+            break;
+
+        case 'add':
+            await add(command[1]);
+            break;
+
+        case 'mkdir':
+            await mkdir(command[1]);
+            break;
+
+        case 'rn':
+            await rn(command[1], command[2]);
+            break;
+
+        case 'cp':
+            await cp(command[1], command[2]);
+            break;
+
+        case 'mv':
+            await mv(command[1], command[2]);
+            break;
+
+        case 'rm':
+            await rm(command[1]);
+            break;
+
         default:
             process.stdout.write(invalidInputText);
     }
@@ -36,7 +65,7 @@ export default new Transform({
             await onCommand(normalizedCommand);
         } catch (error) {
             process.stdout.write(failedText);
-            process.stdout.write(error);
+            process.stdout.write(`${error.message}${EOL}`);
             process.stdout.write(sayCurrentDir(process.cwd()));
         }
         callback();
