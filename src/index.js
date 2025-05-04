@@ -7,6 +7,7 @@ process.on('SIGINT', byeAndExit);
 
 const init = async () => {
     const { argName, homedir } = getUserInfo();
+    process.chdir(homedir);
 
     process.stdout.write(sayHello(argName));
     process.stdout.write(sayCurrentDir(homedir));
