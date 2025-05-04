@@ -1,9 +1,11 @@
-export const sayHello = (name) => `Welcome to the File Manager, ${name}!\n`;
+import { EOL } from 'node:os';
 
-export const sayBye = (name) => `\nThank you for using File Manager, ${name}, goodbye!\n`;
+export const sayHello = (name) => `Welcome to the File Manager, ${name}!${EOL}`;
 
-export const sayCurrentDir = (dir) => `\nYou are currently in ${dir}\n`;
+export const sayBye = (name) => `\nThank you for using File Manager, ${name}, goodbye!${EOL}`;
 
-export const invalidInputText = 'Invalid input\n';
+export const sayCurrentDir = (dir) => `\nYou are currently in ${dir}${EOL}`;
 
-export const failedText = 'Operation failed\n';
+export const invalidInputText = `Invalid input${EOL}`;
+
+export const failedText = `Operation failed${EOL}`;
