@@ -5,6 +5,7 @@ import byeAndExit from './actions/byeAndExit.js';
 import { up, cd, ls } from './actions/navigation.js';
 import { cat, add, mkdir, rn, cp, mv, rm } from './actions/files.js';
 import osInfo from './actions/os.js';
+import calcHash from './actions/hash.js';
 
 const onCommand = async (command) => {
     switch (command[0]) {
@@ -54,6 +55,10 @@ const onCommand = async (command) => {
 
         case 'os':
             osInfo(command[1]);
+            break;
+
+        case 'hash':
+            await calcHash(command[1]);
             break;
 
         default:
