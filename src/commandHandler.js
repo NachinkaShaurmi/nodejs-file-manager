@@ -6,6 +6,7 @@ import { up, cd, ls } from './actions/navigation.js';
 import { cat, add, mkdir, rn, cp, mv, rm } from './actions/files.js';
 import osInfo from './actions/os.js';
 import calcHash from './actions/hash.js';
+import { compress, decompress } from './actions/compression.js';
 
 const onCommand = async (command) => {
     switch (command[0]) {
@@ -59,6 +60,14 @@ const onCommand = async (command) => {
 
         case 'hash':
             await calcHash(command[1]);
+            break;
+
+        case 'compress':
+            await compress(command[1], command[2]);
+            break;
+
+        case 'decompress':
+            await decompress(command[1], command[2]);
             break;
 
         default:
